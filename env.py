@@ -1,7 +1,7 @@
 '''
-LunarLander-v2 solution by Michel Aka
-https://github.com/FitMachineLearning/FitML/
-https://www.youtube.com/channel/UCi7_WxajoowBl4_9P0DhzzA/featured
+LunarLander-v2 solution
+
+
 Using Modified Q Learning, Bellman, Reinforcement Learning, RL memory
 '''
 import numpy as np
