@@ -1,8 +1,6 @@
 '''
 LunarLander-v2 solution
-
-
-Using Modified Q Learning, Bellman, Reinforcement Learning, RL memory
+Using Q Learning, Bellman, Reinforcement Learning, RL memory
 '''
 import numpy as np
 import keras
