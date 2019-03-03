@@ -2,17 +2,16 @@
 LunarLander-v2 solution
 Using Q Learning, Bellman, Reinforcement Learning, RL memory
 '''
-import numpy as np
 import keras
-import gym
+from lunar_lander import *
 import os
 import h5py
+
 
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras.layers import Embedding
 from keras import optimizers
-
 
 num_env_variables = 8
 num_env_actions = 4
@@ -36,7 +35,7 @@ actions_1_hot = np.zeros((num_env_actions,num_env_actions))
 actions_1_hot[np.arange(num_env_actions),possible_actions] = 1
 
 #Create testing enviroment
-env = gym.make('LunarLander-v2')
+env = LunarLander()
 env.reset()
 
 #initialize training matrix with random states and actions
@@ -215,9 +214,8 @@ if observe_and_train:
 
 
 
-
-
 if save_weights:
     #Save model
     print("Saving weights")
 model.save_weights(weigths_filename)
+
