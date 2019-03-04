@@ -13,21 +13,39 @@ from keras.layers import Dense, Dropout
 from keras.layers import Embedding
 from keras import optimizers
 
-num_env_variables = 8
-num_env_actions = 4
+num_env_variables = 8 < len(sys.argv) and int(sys.argv[8]) or 8
+
+num_env_actions = 9 < len(sys.argv) and int(sys.argv[9]) or 4
+
 num_initial_observation = 15
-learning_rate = 0.003
+
+learning_rate = 6 < len(sys.argv) and float(sys.argv[6]) or 0.003
+
 weigths_filename = "LL-QL-v2-weights.h5"
 
-b_discount = 0.99
-max_memory_len = 60000
-starting_explore_prob = 0.05
-training_epochs = 3
-load_previous_weights = True
-observe_and_train = True
-save_weights = True
-num_games_to_play = 100
+b_discount = 7 < len(sys.argv) and float(sys.argv[7]) or 0.99
 
+max_memory_len = 60000
+
+starting_explore_prob = 0.05
+
+training_epochs = 10 < len(sys.argv) and int(sys.argv[10]) or 3
+
+if 12 < len(sys.argv):
+    if sys.argv[12]:
+        load_previous_weights = True
+    else: load_previous_weights = False
+else: load_previous_weights = True
+
+observe_and_train = True
+
+if 13 < len(sys.argv):
+    if sys.argv[12]:
+        save_weights = True
+    else: save_weights = False
+else: save_weights = True
+
+num_games_to_play = 11 < len(sys.argv) and int(sys.argv[11]) or 100
 
 #One hot encoding array
 possible_actions = np.arange(0,num_env_actions)

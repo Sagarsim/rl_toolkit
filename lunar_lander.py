@@ -32,8 +32,8 @@ from gym.utils import seeding, EzPickle
 #
 # Created by Oleg Klimov. Licensed on the same terms as the rest of OpenAI Gym.
 
-FPS    = int(sys.argv[1]) or 50
-SCALE  = 30.0   # affects how fast-paced the game is, forces should be adjusted as well
+FPS    = 1 < len(sys.argv) and int(sys.argv[1]) or 50
+SCALE  = 2 < len(sys.argv) and int(sys.argv[2]) or 30  # affects how fast-paced the game is, forces should be adjusted as well
 
 MAIN_ENGINE_POWER  = 13.0
 SIDE_ENGINE_POWER  =  0.6
@@ -47,7 +47,7 @@ LANDER_POLY =[
 LEG_AWAY = 20
 LEG_DOWN = 18
 LEG_W, LEG_H = 2, 8
-LEG_SPRING_TORQUE = 40
+LEG_SPRING_TORQUE = 3 < len(sys.argv) and int(sys.argv[3]) or 40
 
 SIDE_ENGINE_HEIGHT = 14.0
 SIDE_ENGINE_AWAY   = 12.0
@@ -151,7 +151,7 @@ class LunarLander(gym.Env, EzPickle):
             self.moon.CreateEdgeFixture(
                 vertices=[p1,p2],
                 density=0,
-                friction=0.1)
+                friction=4 < len(sys.argv) and float(sys.argv[4]) or 0.1)
             self.sky_polys.append( [p1, p2, (p2[0],H), (p1[0],H)] )
 
         self.moon.color1 = (0.0,0.0,0.0)
@@ -163,7 +163,7 @@ class LunarLander(gym.Env, EzPickle):
             angle=0.0,
             fixtures = fixtureDef(
                 shape=polygonShape(vertices=[ (x/SCALE,y/SCALE) for x,y in LANDER_POLY ]),
-                density=5.0,
+                density=5 < len(sys.argv) and float(sys.argv[5]) or 5.0,
                 friction=0.1,
                 categoryBits=0x0010,
                 maskBits=0x001,  # collide only with ground

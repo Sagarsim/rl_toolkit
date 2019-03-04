@@ -2,29 +2,69 @@ from tkinter import *
 from threading import Thread
 import os
 import sys
+print(float(str(0.004)))
 
-        
+''' 
++str(fps.get())+" "
++str(sim_speed.get())+" "
++str(spring_tq.get())+" "
++str(l_friction.get())+" "
++str(rocket_den.get())+" "
++str(l_rate_val.get())+" "
++str(d_rate_val.get())+" "
++str(env_var.get())+" "
++str(env_action.get())+" "
++str(t_epochs.get())+" "
++str(no_games.get())+" "
+'''    
 #control = Controller()
 root = Tk()
 root.geometry("800x700+30+30")
+
+
 
 class Controller(object):
     def __init__(self):
         self.param=None
         self.my_thread=None
+        self.par_array=[]
     def start_in_thread(self):
         self.my_thread = Thread(target=self.start_training)
         self.my_thread.daemon = True
         self.my_thread.start()
         startbtn.configure(state=DISABLED)
     def start_training(self):
-        self.param="python3 env.py "+str(fps.get())
+        self.par_array = [str(fps.get())+" ",
+        str(sim_speed.get())+" ",
+        str(spring_tq.get())+" ",
+        str(l_friction.get()/10)+" ",
+        str(rocket_den.get())+" ",
+        str(l_rate_val.get())+" ",
+        str(d_rate_val.get())+" ",
+        str(env_var.get())+" ",
+        str(env_action.get())+" ",
+        str(t_epochs.get())+" ",
+        str(no_games.get())+" "]
+        self.param="python3 env.py "+"".join(self.par_array)
+        print(self.param)
         os.system(self.param)
     def stop_training(self):
         sys.platform == "win32" and os.system("taskkill /f /IM env.py") or os.system("pkill -f env.py")
         startbtn.configure(state=NORMAL)
-
-
+    def default_params(self):
+        fps.set(50)
+        sim_speed.set(30)
+        l_friction.set(1)
+        spring_tq.set(40)
+        rocket_den.set(5)
+        l_rate_val.set(0.003)
+        d_rate_val.set(0.99)
+        env_var.set(8)
+        env_action.set(4)
+        t_epochs.set(3)
+        no_games.set(100)
+        var1.set(1)
+        var3.set(1)
 
 control=Controller()	
 
@@ -43,11 +83,13 @@ Label(root,
 		 font = "Helvetica 11").place(x=450, y=60)
 
 Label(root, text="Learning rate (B/W 0.0 to 1.0):").place(x=30,y=100)
-l_rate=Entry(root)
+l_rate_val=DoubleVar()
+l_rate=Entry(root, textvariable=l_rate_val)
 l_rate.place(x=250, y=100)
 
 Label(root, text="Discount factor (B/W 0.0 to 1.0):").place(x=30,y=150)
-d_rate=Entry(root)
+d_rate_val=DoubleVar()
+d_rate=Entry(root, textvariable=d_rate_val)
 d_rate.place(x=250, y=150)
 
 Label(root, text="Environment Variables:").place(x=30, y=200)
@@ -114,10 +156,13 @@ stopbtn = Button(root,
 stopbtn.place(x=190, y=550)
 
 defbtn = Button(root,
-                   text="Start with default params",
+                   text="SET DEFAULT PARAMETERS",
 				   fg="blue",
 				   width=50,
-                   command=root.destroy)
+                   command=control.default_params)
 defbtn.place(x=190, y=600)
+
+
+
 root.mainloop()
 
