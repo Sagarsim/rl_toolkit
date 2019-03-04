@@ -13,9 +13,9 @@ from keras.layers import Dense, Dropout
 from keras.layers import Embedding
 from keras import optimizers
 
-num_env_variables = 8 < len(sys.argv) and int(sys.argv[8]) or 8
+num_env_variables = 8
 
-num_env_actions = 9 < len(sys.argv) and int(sys.argv[9]) or 4
+num_env_actions = 4
 
 num_initial_observation = 15
 
@@ -29,23 +29,24 @@ max_memory_len = 60000
 
 starting_explore_prob = 0.05
 
-training_epochs = 10 < len(sys.argv) and int(sys.argv[10]) or 3
+training_epochs = 8 < len(sys.argv) and int(sys.argv[8]) or 3
 
-if 12 < len(sys.argv):
-    if sys.argv[12]:
+if 10 < len(sys.argv):
+    if int(sys.argv[10]) == 1:
         load_previous_weights = True
+
     else: load_previous_weights = False
 else: load_previous_weights = True
 
 observe_and_train = True
 
-if 13 < len(sys.argv):
-    if sys.argv[12]:
+if 11 < len(sys.argv):
+    if int(sys.argv[11]) == 1:
         save_weights = True
     else: save_weights = False
 else: save_weights = True
 
-num_games_to_play = 11 < len(sys.argv) and int(sys.argv[11]) or 100
+num_games_to_play = 9 < len(sys.argv) and int(sys.argv[9]) or 100
 
 #One hot encoding array
 possible_actions = np.arange(0,num_env_actions)
@@ -71,7 +72,6 @@ model.add(Dense(512, activation='relu', input_dim=dataX.shape[1]))
 model.add(Dense(256, activation='relu' ))
 model.add(Dense(256, activation='relu'))
 model.add(Dense(dataY.shape[1]))
-
 opt = optimizers.adam(lr=learning_rate)
 
 model.compile(loss='mse', optimizer=opt, metrics=['accuracy'])

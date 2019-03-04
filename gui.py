@@ -1,8 +1,8 @@
 from tkinter import *
 from threading import Thread
+from PIL import ImageTk, Image
 import os
 import sys
-print(float(str(0.004)))
 
 ''' 
 +str(fps.get())+" "
@@ -41,10 +41,15 @@ class Controller(object):
         str(rocket_den.get())+" ",
         str(l_rate_val.get())+" ",
         str(d_rate_val.get())+" ",
-        str(env_var.get())+" ",
-        str(env_action.get())+" ",
         str(t_epochs.get())+" ",
         str(no_games.get())+" "]
+        
+        if var1.get() == 1:
+            self.par_array.append(str(1)+" ")
+        else: self.par_array.append(str(0)+" ")
+        if var3.get() == 1:
+            self.par_array.append(str(1)+" ")
+        else: self.par_array.append(str(0)+" ")    
         self.param="python3 env.py "+"".join(self.par_array)
         print(self.param)
         os.system(self.param)
@@ -59,12 +64,17 @@ class Controller(object):
         rocket_den.set(5)
         l_rate_val.set(0.003)
         d_rate_val.set(0.99)
-        env_var.set(8)
-        env_action.set(4)
         t_epochs.set(3)
         no_games.set(100)
         var1.set(1)
         var3.set(1)
+    def model(self):
+        imgwin = Tk()
+        img = PhotoImage(master = imgwin, file="model_plot.png")
+        panel = Label(imgwin, image = img)
+        panel.pack(side = "bottom", fill = "both", expand = "yes")
+        imgwin.mainloop()
+
 
 control=Controller()	
 
@@ -92,33 +102,25 @@ d_rate_val=DoubleVar()
 d_rate=Entry(root, textvariable=d_rate_val)
 d_rate.place(x=250, y=150)
 
-Label(root, text="Environment Variables:").place(x=30, y=200)
-env_var = Scale(root, from_=1, to=10, orient=HORIZONTAL)
-env_var.place(x=250, y=180)
-
-Label(root, text="Environment Actions:").place(x=30, y=250)
-env_action = Scale(root, from_=4, to=10, orient=HORIZONTAL)
-env_action.place(x=250, y=230)
-
-Label(root, text="Training Epochs:").place(x=30, y=300)
+Label(root, text="Training Epochs:").place(x=30, y=200)
 t_epochs = Scale(root, from_=1, to=10, orient=HORIZONTAL)
-t_epochs.place(x=250, y=280)
+t_epochs.place(x=250, y=180)
 
-Label(root, text="No. of games to play:").place(x=30, y=350)
-no_games = Scale(root, from_=1, to=100, orient=HORIZONTAL)
-no_games.place(x=250, y=330)
+Label(root, text="No. of games to play:").place(x=30, y=250)
+no_games = Scale(root, from_=1, to=500, orient=HORIZONTAL)
+no_games.place(x=250, y=230)
 
-Label(root, text="Load previous weights:").place(x=30, y=400)
+Label(root, text="Load previous weights:").place(x=30, y=300)
 var1 = IntVar()
-Checkbutton(root, text="YES", variable=var1).place(x=250, y=400)
+Checkbutton(root, text="YES", variable=var1).place(x=250, y=300)
 var2 = IntVar()
-Checkbutton(root, text="NO", variable=var2).place(x=300, y=400)
+Checkbutton(root, text="NO", variable=var2).place(x=300, y=300)
 
-Label(root, text="Save weights:").place(x=30, y=450)
+Label(root, text="Save weights:").place(x=30, y=350)
 var3 = IntVar()
-Checkbutton(root, text="YES", variable=var3).place(x=250, y=450)
+Checkbutton(root, text="YES", variable=var3).place(x=250, y=350)
 var4 = IntVar()
-Checkbutton(root, text="NO", variable=var4).place(x=300, y=450)
+Checkbutton(root, text="NO", variable=var4).place(x=300, y=350)
 
 Label(root, text="Frames per second:").place(x=450, y=100)
 fps = Scale(root, from_=1, to=50, orient=HORIZONTAL)
@@ -161,6 +163,12 @@ defbtn = Button(root,
 				   width=50,
                    command=control.default_params)
 defbtn.place(x=190, y=600)
+defbtn = Button(root,
+                   text="NEURAL NETWORK MODEL",
+				   fg="blue",
+				   width=50,
+                   command=control.model)
+defbtn.place(x=190, y=650)
 
 
 
