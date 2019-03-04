@@ -1,6 +1,5 @@
 from tkinter import *
 from threading import Thread
-from PIL import ImageTk, Image
 import os
 import sys
 
