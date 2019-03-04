@@ -1,10 +1,33 @@
 from tkinter import *
+from threading import Thread
+import os
+import sys
 
-def write_slogan():
-	print("Started")
-
+        
+#control = Controller()
 root = Tk()
-root.geometry("800x700+30+30") 
+root.geometry("800x700+30+30")
+
+class Controller(object):
+    def __init__(self):
+        self.param=None
+        self.my_thread=None
+    def start_in_thread(self):
+        self.my_thread = Thread(target=self.start_training)
+        self.my_thread.daemon = True
+        self.my_thread.start()
+        startbtn.configure(state=DISABLED)
+    def start_training(self):
+        self.param="python3 env.py "+str(fps.get())
+        os.system(self.param)
+    def stop_training(self):
+        sys.platform == "win32" and os.system("taskkill /f /IM env.py") or os.system("pkill -f env.py")
+        startbtn.configure(state=NORMAL)
+
+
+
+control=Controller()	
+
 Label(root, 
 		 text="SPACECRAFT LANDING SIMULATION",
 		 fg = "green",
@@ -80,13 +103,21 @@ startbtn = Button(root,
                    text="START", 
                    fg="green",
 				   width=50,
-                   command=quit)
+                   command=control.start_in_thread)
 startbtn.place(x=190, y=500)
-stopbtn = Button(root,
-                   text="STOP",
-				   fg="red",
+
+stopbtn = Button(root, 
+                   text="STOP", 
+                   fg="red",
 				   width=50,
-                   command=quit)
+                   command=control.stop_training)
 stopbtn.place(x=190, y=550)
+
+defbtn = Button(root,
+                   text="Start with default params",
+				   fg="blue",
+				   width=50,
+                   command=root.destroy)
+defbtn.place(x=190, y=600)
 root.mainloop()
 
