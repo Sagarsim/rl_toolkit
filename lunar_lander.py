@@ -33,6 +33,7 @@ from gym.utils import seeding, EzPickle
 # Created by Oleg Klimov. Licensed on the same terms as the rest of OpenAI Gym.
 
 FPS    = 1 < len(sys.argv) and int(sys.argv[1]) or 50
+
 SCALE  = 2 < len(sys.argv) and int(sys.argv[2]) or 30  # affects how fast-paced the game is, forces should be adjusted as well
 
 MAIN_ENGINE_POWER  = 13.0
@@ -152,6 +153,7 @@ class LunarLander(gym.Env, EzPickle):
                 vertices=[p1,p2],
                 density=0,
                 friction=4 < len(sys.argv) and float(sys.argv[4]) or 0.1)
+
             self.sky_polys.append( [p1, p2, (p2[0],H), (p1[0],H)] )
 
         self.moon.color1 = (0.0,0.0,0.0)
