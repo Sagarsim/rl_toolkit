@@ -17,7 +17,7 @@ python3 gui.py
 * tkinter
 * h5py
 
-<br/><br/>
+<br/>
 See Openai's documentation for further info.<br/>
 https://github.com/openai/gym<br/>
 **Future updates:**
