@@ -16,10 +16,10 @@ python3 gui.py
 * keras(It will be compatible with other ml libraries soon.)
 * tkinter
 * h5py
-
 <br/>
 See Openai's documentation for further info.<br/>
 https://github.com/openai/gym<br/>
+
 **Future updates:**
 
 * Support for more algorithms
