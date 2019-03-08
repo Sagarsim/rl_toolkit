@@ -6,8 +6,6 @@ import sys
 root = Tk()
 root.geometry("800x700+30+30")
 
-
-
 class Controller(object):
     def __init__(self):
         self.param=None
