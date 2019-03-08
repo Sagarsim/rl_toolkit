@@ -64,7 +64,7 @@ dataY = np.random.random((5,1))
 
 
 
-#nitialize the Neural Network with random weights
+#Initialize the Neural Network with random weights
 
 model = Sequential()
 #model.add(Dense(num_env_variables+num_env_actions, activation='tanh', input_dim=dataX.shape[1]))
@@ -226,7 +226,7 @@ if observe_and_train:
                 if r >= 0 and r <99:
                     print("Game ",game," ended with positive reward ")
                 if r > 50:
-                    print("Game ", game," WON *** " )
+                    print("Game ", game," WON *** ", "last reward ",r )
                 #Game ended - Break
                 break
 

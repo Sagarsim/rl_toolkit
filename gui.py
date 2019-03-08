@@ -73,6 +73,18 @@ class Controller(object):
         panel = Label(imgwin, image = img)
         panel.pack(side = "bottom", fill = "both", expand = "yes")
         imgwin.mainloop()
+    def var1func(self):
+        var1.set(1)
+        var2.set(0)
+    def var2func(self):
+        var2.set(1)
+        var1.set(0)
+    def var3func(self):
+        var3.set(1)
+        var4.set(0)
+    def var4func(self):
+        var4.set(1)
+        var3.set(0)
 
 
 control=Controller()	
@@ -111,15 +123,15 @@ no_games.place(x=250, y=230)
 
 Label(root, text="Load previous weights:").place(x=30, y=300)
 var1 = IntVar()
-Checkbutton(root, text="YES", variable=var1).place(x=250, y=300)
+Checkbutton(root, text="YES", variable=var1, command=control.var1func).place(x=250, y=300)
 var2 = IntVar()
-Checkbutton(root, text="NO", variable=var2).place(x=300, y=300)
+Checkbutton(root, text="NO", variable=var2, command=control.var2func).place(x=300, y=300)
 
 Label(root, text="Save weights:").place(x=30, y=350)
 var3 = IntVar()
-Checkbutton(root, text="YES", variable=var3).place(x=250, y=350)
+Checkbutton(root, text="YES", variable=var3, command=control.var3func).place(x=250, y=350)
 var4 = IntVar()
-Checkbutton(root, text="NO", variable=var4).place(x=300, y=350)
+Checkbutton(root, text="NO", variable=var4, command=control.var4func).place(x=300, y=350)
 
 Label(root, text="Frames per second:").place(x=450, y=100)
 fps = Scale(root, from_=1, to=50, orient=HORIZONTAL)
