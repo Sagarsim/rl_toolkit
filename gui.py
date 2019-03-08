@@ -3,20 +3,6 @@ from threading import Thread
 import os
 import sys
 
-''' 
-+str(fps.get())+" "
-+str(sim_speed.get())+" "
-+str(spring_tq.get())+" "
-+str(l_friction.get())+" "
-+str(rocket_den.get())+" "
-+str(l_rate_val.get())+" "
-+str(d_rate_val.get())+" "
-+str(env_var.get())+" "
-+str(env_action.get())+" "
-+str(t_epochs.get())+" "
-+str(no_games.get())+" "
-'''    
-#control = Controller()
 root = Tk()
 root.geometry("800x700+30+30")
 
