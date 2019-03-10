@@ -32,7 +32,7 @@ class Controller(object):
         else: self.par_array.append(str(0)+" ")
         if var3.get() == 1:
             self.par_array.append(str(1)+" ")
-        else: self.par_array.append(str(0)+" ")    
+        else: self.par_array.append(str(0)+" os.system(self.param)")    
         self.param="python3 env.py "+"".join(self.par_array)
         print(self.param)
         os.system(self.param)
@@ -102,7 +102,7 @@ t_epochs = Scale(root, from_=1, to=10, orient=HORIZONTAL)
 t_epochs.place(x=250, y=180)
 
 Label(root, text="No. of games to play:").place(x=30, y=250)
-no_games = Scale(root, from_=1, to=500, orient=HORIZONTAL)
+no_games = Scale(root, from_=1, to=1500, orient=HORIZONTAL)
 no_games.place(x=250, y=230)
 
 Label(root, text="Load previous weights:").place(x=30, y=300)
