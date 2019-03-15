@@ -68,13 +68,14 @@ dataY = np.random.random((5,1))
 
 model = Sequential()
 #model.add(Dense(num_env_variables+num_env_actions, activation='tanh', input_dim=dataX.shape[1]))
-model.add(Dense(512, activation='relu', input_dim=dataX.shape[1]))
-model.add(Dense(256, activation='relu' ))
-model.add(Dense(256, activation='relu'))
+model.add(Dense(128, activation='relu', input_dim=dataX.shape[1]))
+model.add(Dense(64, activation='relu' ))
+model.add(Dense(64, activation='relu'))
 model.add(Dense(dataY.shape[1]))
+ 
 opt = optimizers.adam(lr=learning_rate)
 
-model.compile(loss='mse', optimizer=opt, metrics=['accuracy'])
+model.compile(loss='mean_squared_error', optimizer=opt, metrics=['accuracy'])
 
 #load previous model weights if they exist
 if load_previous_weights:
@@ -220,7 +221,7 @@ if observe_and_train:
             if done and game >= num_initial_observation:
                 if game%10 == 0:
                     print("Training  game# ", game,"momory size", memoryX.shape[0])
-                    model.fit(memoryX,memoryY, batch_size=256,nb_epoch=training_epochs,verbose=0)
+                    model.fit(memoryX,memoryY, batch_size=256,epochs=training_epochs,verbose=0)
 
             if done:
                 if r >= 0 and r <99:

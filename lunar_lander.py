@@ -48,7 +48,9 @@ LANDER_POLY =[
 LEG_AWAY = 20
 LEG_DOWN = 18
 LEG_W, LEG_H = 2, 8
-LEG_SPRING_TORQUE = 3 < len(sys.argv) and int(sys.argv[3]) or 40
+LEG_SPRING_TORQUE = 40
+
+#LEG_SPRING_TORQUE = 3 < len(sys.argv) and int(sys.argv[3]) or 40
 
 SIDE_ENGINE_HEIGHT = 14.0
 SIDE_ENGINE_AWAY   = 12.0

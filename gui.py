@@ -102,7 +102,7 @@ t_epochs = Scale(root, from_=1, to=10, orient=HORIZONTAL)
 t_epochs.place(x=250, y=180)
 
 Label(root, text="No. of games to play:").place(x=30, y=250)
-no_games = Scale(root, from_=1, to=1500, orient=HORIZONTAL)
+no_games = Scale(root, from_=1, to=5000, orient=HORIZONTAL)
 no_games.place(x=250, y=230)
 
 Label(root, text="Load previous weights:").place(x=30, y=300)
