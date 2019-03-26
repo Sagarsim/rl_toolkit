@@ -11,8 +11,8 @@ python3 gui.py
 **Dependency Requirements:**
 
 * python3
-* openai gym library
-* box2d
+* openai gym
+* box2d-py
 * keras(It will be compatible with other ml libraries soon.)
 * tkinter
 * h5py
