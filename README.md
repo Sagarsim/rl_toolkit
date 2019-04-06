@@ -15,6 +15,7 @@ python3 gui.py
 * box2d-py
 * keras(It will be compatible with other ml libraries soon.)
 * tkinter
+* matplotlib
 * h5py
 <br/>
 See Openai's documentation for further info.<br/>
