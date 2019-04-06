@@ -51,7 +51,7 @@ else: save_weights = True
 num_games_to_play = 9 < len(sys.argv) and int(sys.argv[9]) or 100
 
 plt.ion()
-plt.rcParams["figure.figsize"] = [4, 4]
+plt.rcParams["figure.figsize"] = [5.5, 4]
 #One hot encoding array
 possible_actions = np.arange(0,num_env_actions)
 actions_1_hot = np.zeros((num_env_actions,num_env_actions))
