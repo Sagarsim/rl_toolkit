@@ -4,7 +4,7 @@ import os
 import sys
 
 root = Tk()
-root.geometry("800x700+30+30")
+root.geometry("800x600+30+30")
 
 class Controller(object):
     def __init__(self):
@@ -68,7 +68,7 @@ class Controller(object):
 control=Controller()	
 
 Label(root, 
-		 text="SPACECRAFT LANDING SIMULATION",
+		 text="REINFORCEMENT LEARNING ALGORITHM TOOLKIT",
 		 fg = "green",
          bg = "light green",
 		 font = "Helvetica 12").pack(ipadx=400, ipady=15)
@@ -137,21 +137,21 @@ startbtn = Button(root,
                    fg="green",
 				   width=50,
                    command=control.start_in_thread)
-startbtn.place(x=190, y=500)
+startbtn.place(x=190, y=400)
 
 stopbtn = Button(root, 
                    text="STOP", 
                    fg="red",
 				   width=50,
                    command=control.stop_training)
-stopbtn.place(x=190, y=550)
+stopbtn.place(x=190, y=450)
 
 defbtn = Button(root,
                    text="SET DEFAULT PARAMETERS",
 				   fg="blue",
 				   width=50,
                    command=control.default_params)
-defbtn.place(x=190, y=600)
+defbtn.place(x=190, y=500)
 
 root.mainloop()
 

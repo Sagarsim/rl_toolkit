@@ -12,6 +12,8 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras.layers import Embedding
 from keras import optimizers
+import matplotlib.pyplot as plt
+
 
 num_env_variables = 8
 
@@ -48,6 +50,8 @@ else: save_weights = True
 
 num_games_to_play = 9 < len(sys.argv) and int(sys.argv[9]) or 100
 
+plt.ion()
+plt.rcParams["figure.figsize"] = [4, 4]
 #One hot encoding array
 possible_actions = np.arange(0,num_env_actions)
 actions_1_hot = np.zeros((num_env_actions,num_env_actions))
@@ -116,7 +120,8 @@ def predictTotalRewards(qstate, action):
 
 
 if observe_and_train:
-
+    x=[]
+    y=[]
     #Play the game a determine number of times
     for game in range(num_games_to_play):
         gameX = np.zeros(shape=(1,num_env_variables+num_env_actions))
@@ -124,7 +129,7 @@ if observe_and_train:
         #Get the initial Q state
         qs = env.reset()
         for step in range (40000):
-
+            
             #Learn from observation and not playing
             if game < num_initial_observation:
                 #take a radmon action
@@ -171,8 +176,8 @@ if observe_and_train:
             #print("action",a," qs_a",qs_a)
             #Perform the optimal action and get the target state and reward
             s,r,done,info = env.step(a)
-
-
+            
+            
             #record information for training and memory
             if step ==0:
                 gameX[0] = qs_a
@@ -185,6 +190,16 @@ if observe_and_train:
 
 
             if done :
+                x.append(game)
+                y.append(r)
+                plt.xlabel('No. of games')
+                plt.ylabel('Reward')
+                # plt.gca().cla() # optionally clear axes
+                plt.plot(x, y)
+                plt.title('Reward vs No. of games')
+                plt.draw()
+                plt.pause(0.1)
+                plt.show() 
                 #GAME ENDED
                 #Calculate Q values from end to start of game (From last step to first)
                 for i in range(0,gameY.shape[0]):
@@ -221,7 +236,8 @@ if observe_and_train:
             if done and game >= num_initial_observation:
                 if game%10 == 0:
                     print("Training  game# ", game,"momory size", memoryX.shape[0])
-                    model.fit(memoryX,memoryY, batch_size=256,epochs=training_epochs,verbose=0)
+                    model.fit(memoryX,memoryY, batch_size=256,epochs=training_epochs,
+                                 verbose=0)
 
             if done:
                 if r >= 0 and r <99:

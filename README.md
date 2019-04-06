@@ -1,7 +1,7 @@
 # landing_simulation
 RL algorithm testing and analysis on **spacecraft landing simulation** env.<br/><br/>
 Its a tool using which you can **tweak and test RL algorithms** using a simple python based gui.<br/><br/>
-![alt text](https://github.com/Sagar9785/landing_simulation/blob/master/pics/Screenshot_2019-03-07_11-04-34.png)<br/><br/>
+![alt text](https://github.com/Sagar9785/landing_simulation/blob/master/pics/gui.png)<br/><br/>
 
 **Usage:**<br/>
 After downloading required dependencies run 
