@@ -51,12 +51,6 @@ class Controller(object):
         no_games.set(100)
         var1.set(1)
         var3.set(1)
-    def model(self):
-        imgwin = Tk()
-        img = PhotoImage(master = imgwin, file="model_plot.png")
-        panel = Label(imgwin, image = img)
-        panel.pack(side = "bottom", fill = "both", expand = "yes")
-        imgwin.mainloop()
     def var1func(self):
         var1.set(1)
         var2.set(0)
@@ -158,14 +152,6 @@ defbtn = Button(root,
 				   width=50,
                    command=control.default_params)
 defbtn.place(x=190, y=600)
-defbtn = Button(root,
-                   text="NEURAL NETWORK MODEL",
-				   fg="blue",
-				   width=50,
-                   command=control.model)
-defbtn.place(x=190, y=650)
-
-
 
 root.mainloop()
 
