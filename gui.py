@@ -32,7 +32,7 @@ class Controller(object):
         else: self.par_array.append(str(0)+" ")
         if var3.get() == 1:
             self.par_array.append(str(1)+" ")
-        else: self.par_array.append(str(0)+" os.system(self.param)")    
+        else: self.par_array.append(str(0)+" ")   
         self.param="python3 env.py "+"".join(self.par_array)
         print(self.param)
         os.system(self.param)
